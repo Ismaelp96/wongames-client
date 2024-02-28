@@ -5,9 +5,6 @@ import { renderWithTheme } from '../../utils/tests/helpers'
 
 describe('<Logo />', () => {
   it('should render the a white label by default', () => {
-    // renderizar o compoenente `render`
-    // selecionar o elemento a ser testado `screen` (queries) - getByLabel ...
-    // expect - assertion - asserção - comparação - analise
     renderWithTheme(<Logo />)
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       color: '#FAFAFA'
@@ -15,12 +12,23 @@ describe('<Logo />', () => {
   })
 
   it('should render the a black labelwhen color is passed', () => {
-    // renderizar o compoenente `render`
-    // selecionar o elemento a ser testado `screen` (queries) - getByLabel ...
-    // expect - assertion - asserção - comparação - analise
     renderWithTheme(<Logo color="black" />)
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       color: '#030517'
+    })
+  })
+
+  it('should render a bigger logo', () => {
+    renderWithTheme(<Logo size="large" />)
+    expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
+      width: '20rem'
+    })
+  })
+
+  it('should render a normal logo when size is default', () => {
+    renderWithTheme(<Logo size="normal" />)
+    expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
+      width: '11rem'
     })
   })
 })
